@@ -1,0 +1,5 @@
+{
+  "model_path": "generated/model.h5",
+  "dataset_path": "generated/data.csv",
+  "telegram_token": "your telegram bot token"
+}
