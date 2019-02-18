@@ -6,21 +6,6 @@ from tn.network import TweetAnalysisNetwork
 import logging
 
 
-def print_errors(errors: list):
-    """Prints pretty errors
-
-    Args:
-        errors (list): A list of error strings
-    Return
-        None
-    """
-    if len(errors) > 0:
-        for error in errors:
-            print('\n')
-            print('### Errors')
-            print(f'\t- {error}', end='\n\n\n')
-            exit()
-
 # Load configs
 with open('config.json', 'r') as f:
 
@@ -59,6 +44,23 @@ graph = tf.get_default_graph()
 
 chart_url = 'https://image-charts.com/chart'\
         '?cht=bvg&chs=600x600&chco=8c592c|6a41b5|369b6a'
+
+
+def print_errors(errors: list):
+    """Prints pretty errors
+
+    Args:
+        errors (list): A list of error strings
+    Return
+        None
+    """
+    if len(errors) > 0:
+        for error in errors:
+            print('\n')
+            print('### Errors')
+            print(f'\t- {error}', end='\n\n\n')
+            exit()
+
 
 def handle_message(bot, update):
 
@@ -113,6 +115,7 @@ def main():
     # Start handling
     updater.start_polling()
     updater.idle()
+
 
 if __name__ == '__main__':
     main()

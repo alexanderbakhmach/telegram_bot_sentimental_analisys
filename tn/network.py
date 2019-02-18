@@ -7,8 +7,12 @@ import os
 from sklearn.feature_extraction.text import CountVectorizer
 from pandas import read_csv, DataFrame
 
-class TweetAnalysisNetwork:
 
+class TweetAnalysisNetwork:
+"""The object representation of twits analysis neural network
+Realized all necessary methods to train and load netework and to use it
+for prediction
+"""
     def __init__(self, data_path: str, data_rows: int = None, name: str = None):
         """ Initialize network
         Args:
@@ -26,7 +30,6 @@ class TweetAnalysisNetwork:
         self.vectorizer = CountVectorizer()
         self.vectorizer.fit(self.features)
         self.size = len(self.vectorizer.vocabulary_)
-
 
     def create(self, optimizer: str = None,
             loss: str = None, metrics: list = None,
@@ -64,7 +67,6 @@ class TweetAnalysisNetwork:
 
         return self.model
 
-
     def compile(self):
         """Compole network for future usage
         Return:
@@ -72,7 +74,6 @@ class TweetAnalysisNetwork:
         """
         self.model.compile(optimizer=self.optimizer,
                 loss=self.loss, metrics=self.metrics)
-
 
     def train(self, train_size: int = None):
         """Train neural network on given data
@@ -90,7 +91,6 @@ class TweetAnalysisNetwork:
         self.model.fit(train_features, train_labels,
                 epochs=self.epochs, batch_size=self.batch_size)
 
-
     def save(self, path: str):
         """Save trained model in given path
         Args:
@@ -99,7 +99,6 @@ class TweetAnalysisNetwork:
         if not os.path.exists(path):
             os.makedirs(path)
         self.model.save(f'{path}/{self.name}.h5')
-
 
     def load(self, path: str):
         """Load saved model by given path
@@ -110,7 +109,6 @@ class TweetAnalysisNetwork:
         """
         self.model = load_model(path)
         return self.model
-
 
     def predict(self, text: str, json = None):
         """Predict information via loaded model
@@ -141,10 +139,21 @@ class TweetAnalysisNetwork:
         else:
             return prediction
 
-
     def vectorize(self, text_list: list):
+        """ Vectorize given data
+        Convert a collection of text documents to a matrix of token counts
+        Args:
+            text_list (list): Collection of text documents
+        Return:
+            list - matrix of token counts
+        """
         return self.vectorizer.transform(text_list).todense()
 
-
     def categorize(self, labels: list):
+        """Converts a class vector (integers) to binary class matrix
+        Args:
+            labels (list): class vector
+        Return
+            list - binary class matrix
+        """
         return to_categorical(np.array(labels), num_classes=3)
