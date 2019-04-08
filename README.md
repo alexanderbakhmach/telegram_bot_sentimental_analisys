@@ -13,7 +13,7 @@ Telegram bot which analyze typed text. There are 3 category that bot can attache
 The example to install project and configure it with the virtualenv
 Install all required packages. Use python3 stable version
 ```
-$ virtualenv -p python 3 env
+$ virtualenv -p python3 env
 $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
@@ -23,9 +23,9 @@ $ cd generated
 $ unzip generated/data.zip
 $ cd ..
 ```
-Now lets`s train our neural network
+Now lets\`s train our neural network
 All files we will store in generated folder
-Let`s name our model "model"
+Let\`s name our model "model"
 ```
 $ python train.py -s ./generated -d ./generated/data.csv -n model 
 ```
