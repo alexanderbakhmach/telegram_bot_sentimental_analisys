@@ -4,7 +4,23 @@ import re
 import tensorflow as tf
 from tn.network import TweetAnalysisNetwork
 import logging
+import json
 
+
+def print_errors(errors: list):
+    """Prints pretty errors
+
+    Args:
+        errors (list): A list of error strings
+    Return
+        None
+    """
+    if len(errors) > 0:
+        for error in errors:
+            print('\n')
+            print('### Errors')
+            print('\t- {}'.format(error), end='\n\n\n')
+            exit()
 
 # Load configs
 with open('config.json', 'r') as f:
@@ -12,7 +28,7 @@ with open('config.json', 'r') as f:
     # Receive data
     config = json.load(f)
     model_path = config['model_path']
-    dataset_path = config['data_path']
+    dataset_path = config['dataset_path']
     telegram_token = config['telegram_token']
 
     # Define error buffer
@@ -45,23 +61,6 @@ graph = tf.get_default_graph()
 chart_url = 'https://image-charts.com/chart'\
         '?cht=bvg&chs=600x600&chco=8c592c|6a41b5|369b6a'
 
-
-def print_errors(errors: list):
-    """Prints pretty errors
-
-    Args:
-        errors (list): A list of error strings
-    Return
-        None
-    """
-    if len(errors) > 0:
-        for error in errors:
-            print('\n')
-            print('### Errors')
-            print('\t- {}'.format(error), end='\n\n\n')
-            exit()
-
-
 def handle_message(bot, update):
 
     # Receive user chat id
@@ -86,7 +85,7 @@ def handle_message(bot, update):
 
         # Create url to receive chart based on predicted data
         url = '{}&chd=t:{},{},{}'.format(chart_url, p_neutral, p_positive, p_negative) + \
-                '&chl={}|{}|{}'.format(negative_name, positive_name, negative_name)
+                '&chl={}|{}|{}'.format(neutral_name, positive_name, negative_name)
 
         # Create information which will showed to user
         information = 'По результатам анализа \n {} : {}'.format(negative_name, p_negative) + \
