@@ -32,7 +32,7 @@ $ python train.py -s ./generated -d ./generated/data.csv -n model
 It will save trained **.h5** model with name **"model"** to the **"./generated"** folder
 
 ```
-cp example.config.json config.json
+$ cp example.config.json config.json
 ```
 
 At the last step we need to edit our config.json file and check that all data there is correct
