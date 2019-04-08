@@ -1,0 +1,8 @@
+keras
+tensorflow
+sklearn
+flask
+pandas
+telegram
+python-telegram-bot
+requests

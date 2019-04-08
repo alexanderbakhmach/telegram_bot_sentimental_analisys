@@ -3,3 +3,4 @@ config.json
 tn/__pycache__/
 generated/data.csv
 generated/model.h5
+env/

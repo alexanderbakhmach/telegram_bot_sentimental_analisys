@@ -9,10 +9,8 @@ from pandas import read_csv, DataFrame
 
 
 class TweetAnalysisNetwork:
-"""The object representation of twits analysis neural network
-Realized all necessary methods to train and load netework and to use it
-for prediction
-"""
+
+
     def __init__(self, data_path: str, data_rows: int = None, name: str = None):
         """ Initialize network
         Args:
@@ -98,7 +96,7 @@ for prediction
         """
         if not os.path.exists(path):
             os.makedirs(path)
-        self.model.save(f'{path}/{self.name}.h5')
+        self.model.save('{}/{}.h5'.format(path, self.name))
 
     def load(self, path: str):
         """Load saved model by given path

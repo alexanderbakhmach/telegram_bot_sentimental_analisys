@@ -58,7 +58,7 @@ def print_errors(errors: list):
         for error in errors:
             print('\n')
             print('### Errors')
-            print(f'\t- {error}', end='\n\n\n')
+            print('\t- {}'.format(error), end='\n\n\n')
             exit()
 
 
@@ -85,13 +85,13 @@ def handle_message(bot, update):
                 prediction.get('negative').get('name')
 
         # Create url to receive chart based on predicted data
-        url = f'{chart_url}&chd=t:{p_neutral},{p_positive},{p_negative}'\
-                f'&chl={neutral_name}|{positive_name}|{negative_name}'
+        url = '{}&chd=t:{},{},{}'.format(chart_url, p_neutral, p_positive, p_negative) + \
+                '&chl={}|{}|{}'.format(negative_name, positive_name, negative_name)
 
         # Create information which will showed to user
-        information = f'По результатам анализа \n {negative_name} : {p_negative}'\
-                f' \n {positive_name}: {p_positive}'\
-                f' \n {neutral_name}: {p_neutral}'
+        information = 'По результатам анализа \n {} : {}'.format(negative_name, p_negative) + \
+                ' \n {}: {}'.format(positive_name, p_positive) + \
+                ' \n {}: {}'.format(neutral_name, p_neutral)
 
         # Send chart to user
         bot.send_photo(chat_id=chat_id, photo=url)
