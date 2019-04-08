@@ -20,7 +20,7 @@ $ pip install -r requirements.txt
 When all requirement are satisfied generate train data with [generator](https://github.com/alexanderbakhmach/twitter_dataset_adapter.git) or unzip already prepared generated data.
 ```
 $ cd generated
-$ unzip generated/data.zip
+$ unzip data.zip
 $ cd ..
 ```
 Now lets\`s train our neural network
